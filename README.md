@@ -48,3 +48,5 @@ https://youtu.be/MJzmZ9qmdaE?t=1339
 # Cmd + K will enable keyboard on iphone simulator
 
 # useState ... How to use State hook: https://reactjs.org/docs/hooks-state.html
+
+# In React, Button tag takes props with title. React-Native EXPO App sets flex-column by DEFAULT, not row
