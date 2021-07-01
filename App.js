@@ -8,6 +8,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./screens/LoginScreen";
 import { createStackNavigator } from "@react-navigation/stack";
+import RegisterScreen from "./screens/RegisterScreen";
 
 //create initial stack
 const Stack = createStackNavigator();
@@ -34,6 +35,13 @@ export default function App() {
 
           name="Login"
           component={LoginScreen}
+        />
+        <Stack.Screen
+          // // options={{ title: "Sign up" }}
+          // This allows me to change the Title for the page
+
+          name="Register"
+          component={RegisterScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

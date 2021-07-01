@@ -50,3 +50,38 @@ https://youtu.be/MJzmZ9qmdaE?t=1339
 # useState ... How to use State hook: https://reactjs.org/docs/hooks-state.html
 
 # In React, Button tag takes props with title. React-Native EXPO App sets flex-column by DEFAULT, not row
+
+# RegisterScreen
+
+navigation props.
+https://youtu.be/MJzmZ9qmdaE?t=3027
+
+--in LoginScreen.json
+
+const LoginScreen = ({ navigation }) => {
+
+onPress={() => navigation.navigate("Register")
+
+in RegisterScreen.js
+
+const RegisterScreen = ({navigation}) => {
+
+## // KeyboardAvoidingView tag will push up the page when the keyboards is brought up
+
+  <KeyboardAvoidingView behavior='padding' style={styles.container} >
+
+## {/\* //StatusBar is Clock/Reception/Battery Icons next to iPhone camera notch.
+
+      "light" is white.
+      "dark" is black*/}
+
+
+      <StatusBar style="light" />
+
+## in React-Native, we do not use <h1> tag
+
+instead, write like this.
+
+<Text h3 style={{ marginBottom: 50 }}>
+Create an account
+</Text>

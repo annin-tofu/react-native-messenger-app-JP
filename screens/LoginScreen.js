@@ -10,7 +10,7 @@ import { StatusBar } from "expo-status-bar";
 // LOGIN SCREEN
 
 // const and function are the same thing
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   // Declare a new state variable, which we'll call "Email"
   const [email, setEmail] = useState("");
 
@@ -21,7 +21,7 @@ const LoginScreen = () => {
 
   return (
     // <View style={styles.container}>
-    // KeyboardAvoidingView tag enables
+    // KeyboardAvoidingView tag will push up the page when the keyboards is brought up
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
       {/* //StatusBar is Clock/Reception/Battery Icons next to iPhone camera notch. 
       "light" is white. 
@@ -68,7 +68,13 @@ const LoginScreen = () => {
       <Button containerStyle={styles.button} onPress={signIn} title="Login" />
 
       {/* type="outline"  makes the box outlined. i.e. here it  makes the Register box with blue text, and white background, and blue outline */}
-      <Button containerStyle={styles.button} type="outline" title="Register" />
+      {/*  onPress={() => navigation.navigate("Register")   >>>this is how we change screens on React-Native */}
+      <Button
+        onPress={() => navigation.navigate("Register")}
+        containerStyle={styles.button}
+        type="outline"
+        title="Register"
+      />
 
       {/* next line is added to have more space between keyboard and register button, when keyboard is enabled. */}
       <View style={{ height: 100 }} />
