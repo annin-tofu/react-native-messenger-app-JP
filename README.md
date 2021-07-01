@@ -85,3 +85,21 @@ instead, write like this.
 <Text h3 style={{ marginBottom: 50 }}>
 Create an account
 </Text>
+
+# When native-react is freaking out>>> try "Cmd + Ctrl + z" to reload
+
+# {/_ raised >> creates raised effects >> creates shadow effect _/}
+
+      <Button raised onPress={register} title="Register" />
+
+# // useLayerEffect in React-Native similarly works like useEffect as in React.
+
+// Any kind of navigation works, use useLayerEffect
+// https://youtu.be/MJzmZ9qmdaE?t=3884
+// https://reactjs.org/docs/hooks-reference.html#uselayouteffect
+useLayoutEffect(() => {
+navigation.setOptions({
+// headerBackTitle is message that is next "<"" logo on top-left.
+headerBackTitle: "Back to Login",
+});
+}, [navigation]);

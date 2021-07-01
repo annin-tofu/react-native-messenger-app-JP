@@ -2,9 +2,9 @@
 // rnfes (ReactNativeFunctionalExportStylesheet)
 
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
-import { Button, Input } from "react-native-elements";
+import React, { useState, useLayoutEffect } from "react";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { Button, Input, Text } from "react-native-elements";
 
 const RegisterScreen = ({ navigation }) => {
   // Name column
@@ -15,6 +15,17 @@ const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   //   ImageUrl column
   const [imageUrl, setImageUrl] = useState("");
+
+  //   useLayerEffect in React-Native similarly works like useEffect as in React.
+  // Any kind of navigation works, use useLayerEffect
+  //   https://youtu.be/MJzmZ9qmdaE?t=3884
+  //   https://reactjs.org/docs/hooks-reference.html#uselayouteffect
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      // headerBackTitle is message that is next "<"" logo on top-left.
+      headerBackTitle: "Back to Login",
+    });
+  }, [navigation]);
 
   //   This is for   {/* ImageURL column */}
   //   onSubmitEditing={register}
@@ -71,12 +82,38 @@ const RegisterScreen = ({ navigation }) => {
           onSubmitEditing={register}
         />
       </View>
+      {/* onPress={register} >> upon clicking the button, it will trigger register.  or  // onSubmitEditing={register}  >> will enable automatic register */}
+      {/* raised  >> creates raised effects >> creates shadow effect */}
+      <Button raised onPress={register} title="Register" />
+
+      {/* next line is added to have more space between keyboard and register button, when keyboard is enabled. */}
+      <View style={{ height: 100 }} />
     </KeyboardAvoidingView>
   );
 };
 
 export default RegisterScreen;
 
+// styling (CSS)  <<< This styling is the exactly the same as in LoginScreen
 const styles = StyleSheet.create({
-  container: {},
+  // for WHOLE LoginScreen
+  container: {
+    flex: 1,
+    // alignItems: 'center'  >>NOTE: axis is vertical
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    backgroundColor: "white",
+  },
+
+  // Login and Register width are widened here
+  inputContainer: {
+    width: 300,
+  },
+
+  // marginTop will make more space between Login and Register buttons
+  button: {
+    width: 200,
+    marginTop: 10,
+  },
 });
