@@ -11,6 +11,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AddChatScreen from "./screens/AddChatScreen";
+import ChatScreen from "./screens/ChatScreen";
 
 //create initial stack
 const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ export default function App() {
         // inititalRouteName="Home"
         screenOptions={globalScreenOptions}
       >
+        {/* LOGIN SCREEN */}
         {/* this is similar to useRouter in React */}
         <Stack.Screen
           // // options={{ title: "Sign up" }}
@@ -41,23 +43,37 @@ export default function App() {
           name="Login"
           component={LoginScreen}
         />
+
+        {/* REGISTER SCREEN */}
         <Stack.Screen
           // // options={{ title: "Sign up" }}
           // This allows me to change the Title for the page
           name="Register"
           component={RegisterScreen}
         />
+
+        {/* HOME SCREEN */}
         <Stack.Screen
           // // options={{ title: "Sign up" }}
           // This allows me to change the Title for the page
           name="Home"
           component={HomeScreen}
         />
+
+        {/* ADD CHAT SCREEN */}
         <Stack.Screen
           // // options={{ title: "Sign up" }}
           // This allows me to change the Title for the page
           name="AddChat"
           component={AddChatScreen}
+        />
+
+        {/* CHAT SCREEN */}
+        <Stack.Screen
+          // // options={{ title: "Sign up" }}
+          // This allows me to change the Title for the page
+          name="Chat"
+          component={ChatScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

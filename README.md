@@ -151,8 +151,6 @@ There are actually no differences between the JPG and JPEG formats. The only dif
 
 https://res.cloudinary.com/dhyagpwyl/image/upload/v1625110274/Yuya_Profile_Pic_pp0zzs.png
 
+# when React-Native is freaking out / or freezes
 
-
-
-
-
+go to terminal and press "i" to reopoen iOS simulator.

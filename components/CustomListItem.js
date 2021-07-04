@@ -7,7 +7,8 @@ import { ListItem, Avatar } from "react-native-elements";
 const CustomListItem = ({ id, chatName, enterChat }) => {
   return (
     // CHAT ITEM LIST
-    <ListItem>
+    // bottomDivider =>gives subtle lines underneath
+    <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
       <Avatar
         // "rounded" makes the Avatar in a circle shape
         rounded
@@ -19,16 +20,14 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
       <ListItem.Content>
         {/* TITLE */}
         <ListItem.Title style={{ fontWeight: "800" }}>
-          Youtube Chat
+          {chatName}
         </ListItem.Title>
 
         {/* SUBTITLE */}
         {/* "numberOfLines" set to 1 => we only want to show one line of text */}
         {/* "ellipsize" means "..." */}
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
-          This is a test subtitle This is a test subtitle This is a test
-          subtitle This is a test subtitle This is a test subtitle This is a
-          test subtitle
+          ABC
         </ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>

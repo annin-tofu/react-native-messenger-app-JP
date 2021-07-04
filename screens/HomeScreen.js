@@ -86,14 +86,25 @@ const HomeScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const enterChat = (id, chatName) => {
+    // id: id, chatName: chatName ==>will work too
+    navigation.navigate("Chat", { id, chatName });
+  };
+
   return (
     // SafeAreaView protects surrounding container from getting cut off by notches (rounded corners)
     <SafeAreaView>
       {/* //ScrollView enables scrollable container */}
-      <ScrollView>
+      <ScrollView style={styles.container}>
         {chats.map(({ id, data: { chatName } }) => (
           // "key" allows you to have efficient re-rendering of the list
-          <CustomListItem key={id} id={id} chatName={chatName} />
+          <CustomListItem
+            key={id}
+            id={id}
+            chatName={chatName}
+            //passing through "enterChat" function as a prop
+            enterChat={enterChat}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -102,4 +113,9 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    // when you put 100%, put it in a string ""
+    height: "100%",
+  },
+});
