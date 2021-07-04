@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState, useLayoutEffect } from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Button, Input, Text } from "react-native-elements";
+import { auth } from "../firebase";
 
 const RegisterScreen = ({ navigation }) => {
   // Name column
@@ -29,7 +30,22 @@ const RegisterScreen = ({ navigation }) => {
 
   //   This is for   {/* ImageURL column */}
   //   onSubmitEditing={register}
-  const register = () => {};
+  const register = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        // https://youtu.be/MJzmZ9qmdaE?t=4483
+        authUser.user.update({
+          displayName: name,
+          //   double straight lines || means OR
+          photoURL:
+            imageUrl ||
+            "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+        });
+      })
+      //below line is for when the authentication did not go successful. if there is any error, alert will pop up
+      .catch((error) => alert(error.message));
+  };
 
   return (
     // KeyboardAvoidingView tag will push up the page when the keyboards is brought up

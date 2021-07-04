@@ -2,13 +2,14 @@
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
-//Status bar is the the clock and reception next to the iphone top . If set to "light", the clock and reception bar will not be visible.
-import { StatusBar } from "expo-status-bar";
+// //Status bar is the the clock and reception next to the iphone top . If set to "light", the clock and reception bar will not be visible.
+// import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./screens/LoginScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import RegisterScreen from "./screens/RegisterScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 //create initial stack
 const Stack = createStackNavigator();
@@ -32,16 +33,20 @@ export default function App() {
         <Stack.Screen
           // // options={{ title: "Sign up" }}
           // This allows me to change the Title for the page
-
           name="Login"
           component={LoginScreen}
         />
         <Stack.Screen
           // // options={{ title: "Sign up" }}
           // This allows me to change the Title for the page
-
           name="Register"
           component={RegisterScreen}
+        />
+        <Stack.Screen
+          // // options={{ title: "Sign up" }}
+          // This allows me to change the Title for the page
+          name="Home"
+          component={HomeScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

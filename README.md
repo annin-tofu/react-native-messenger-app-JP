@@ -103,3 +103,56 @@ navigation.setOptions({
 headerBackTitle: "Back to Login",
 });
 }, [navigation]);
+
+# Connect to Firebase
+
+---In RegisterScreen,
+
+// This is for {/_ ImageURL column _/}
+// onSubmitEditing={register}
+const register = () => {
+auth
+.createUserWithEmailAndPassword(email, password)
+.then((authUser) => {
+// https://youtu.be/MJzmZ9qmdaE?t=4483
+authUser.user.update({
+displayName: name,
+// double straight lines || means OR
+photoURL:
+imageUrl ||
+"https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+});
+})
+//below line is for when the authentication did not go successful. if there is any error, alert will pop up
+.catch((error) => alert(error.message));
+};
+
+---In LoginScreen,
+
+// with below lines, the app will know if the user is logged in or not. https://youtu.be/MJzmZ9qmdaE?t=4518
+useEffect(() => {
+const unsubscribe = auth.onAuthStateChanged((authUser) => {
+//next line is for when the user is not signed in>>> then push him to the Home screen
+if (authUser) {
+navigation.replace("Home");
+}
+});
+
+    // "const unsubcribe" and below lines are for unmounting when the components remounts
+    return unsubscribe;
+
+}, []);
+
+# Registration --For profile pic
+
+only use JPEG/JPG or PNG
+
+There are actually no differences between the JPG and JPEG formats. The only difference is the number of characters used. JPG only exists because in earlier versions of Windows (MS-DOS 8.3 and FAT-16 file systems) they required a three letter extension for the file names
+
+https://res.cloudinary.com/dhyagpwyl/image/upload/v1625110274/Yuya_Profile_Pic_pp0zzs.png
+
+
+
+
+
+

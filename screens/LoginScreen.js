@@ -2,10 +2,11 @@
 // rnfes (ReactNativeFunctionalExportStylesheet)
 
 //State hook is... https://reactjs.org/docs/hooks-state.html
-import React, { useState } from "react";
-import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Button, Input, Image } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
+import { auth } from "../firebase";
 
 // LOGIN SCREEN
 
@@ -16,6 +17,21 @@ const LoginScreen = ({ navigation }) => {
 
   // Declare a new state variable, which we'll call "Password"
   const [password, setPassword] = useState("");
+
+  // with below lines, the app will know if the user is logged in or not. https://youtu.be/MJzmZ9qmdaE?t=4518
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      // console.log(authUser) is for debugging
+      console.log(authUser);
+      //next line is for when the user is not signed in>>> then push him to the Home screen
+      if (authUser) {
+        navigation.replace("Home");
+      }
+    });
+
+    // "const unsubcribe" and below lines are for unmounting when the components remounts
+    return unsubscribe;
+  }, []);
 
   const signIn = () => {};
 
