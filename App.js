@@ -28,7 +28,10 @@ export default function App() {
   return (
     // React-Native Navigator https://reactnavigation.org/docs/getting-started/
     <NavigationContainer>
-      <Stack.Navigator screenOptions={globalScreenOptions}>
+      <Stack.Navigator
+        inititalRouteName="Home"
+        screenOptions={globalScreenOptions}
+      >
         {/* this is similar to useRouter in React */}
         <Stack.Screen
           // // options={{ title: "Sign up" }}

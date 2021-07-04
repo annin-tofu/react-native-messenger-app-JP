@@ -1,11 +1,20 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useLayoutEffect } from "react";
+import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
+import CustomListItem from "../components/CustomListItem";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: "Signal" });
+  }, []);
+
   return (
-    <View>
-      <Text>This is Homepage </Text>
-    </View>
+    // SafeAreaView protects surrounding container from getting cut off by notches (rounded corners)
+    <SafeAreaView>
+      {/* //ScrollView enables scrollable container */}
+      <ScrollView>
+        <CustomListItem />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
