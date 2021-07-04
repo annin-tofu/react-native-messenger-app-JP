@@ -1,3 +1,5 @@
+// use ES7 snippets
+// rnfes (ReactNativeFunctionalExportStylesheet)
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
