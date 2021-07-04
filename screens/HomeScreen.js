@@ -1,5 +1,5 @@
 import { auth, db } from "../firebase";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -43,7 +43,8 @@ const HomeScreen = ({ navigation }) => {
         </View>
       ),
 
-      headerRight: () => {
+      // for Camera logo and pencil logo on header right
+      headerRight: () => (
         <View
           style={{
             flexDirection: "row",
@@ -52,16 +53,23 @@ const HomeScreen = ({ navigation }) => {
             marginRight: 20,
           }}
         >
+          {/* CAMERA ICON */}
           <TouchableOpacity activeOpacity={0.5}>
+            {/* //name="camerao"  => camera outline */}
             <AntDesign name="camerao" size={24} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.5}>
+
+          {/* PENCIL ICON */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate("AddChat")}
+            activeOpacity={0.5}
+          >
             <SimpleLineIcons name="pencil" size={24} color="black" />
           </TouchableOpacity>
-        </View>;
-      },
+        </View>
+      ),
     });
-  }, []);
+  }, [navigation]);
 
   return (
     // SafeAreaView protects surrounding container from getting cut off by notches (rounded corners)

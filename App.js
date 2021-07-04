@@ -10,6 +10,7 @@ import LoginScreen from "./screens/LoginScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
+import AddChatScreen from "./screens/AddChatScreen";
 
 //create initial stack
 const Stack = createStackNavigator();
@@ -29,7 +30,8 @@ export default function App() {
     // React-Native Navigator https://reactnavigation.org/docs/getting-started/
     <NavigationContainer>
       <Stack.Navigator
-        inititalRouteName="Home"
+        //  inititalRouteName="Home" => forces to navigate to Home
+        // inititalRouteName="Home"
         screenOptions={globalScreenOptions}
       >
         {/* this is similar to useRouter in React */}
@@ -50,6 +52,12 @@ export default function App() {
           // This allows me to change the Title for the page
           name="Home"
           component={HomeScreen}
+        />
+        <Stack.Screen
+          // // options={{ title: "Sign up" }}
+          // This allows me to change the Title for the page
+          name="AddChat"
+          component={AddChatScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
