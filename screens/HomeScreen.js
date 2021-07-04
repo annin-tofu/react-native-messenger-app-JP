@@ -15,11 +15,26 @@ import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 //for Logout
 const HomeScreen = ({ navigation }) => {
+  // https://youtu.be/MJzmZ9qmdaE?t=7728
+  const [chats, setChats] = useState([]);
+
   const signOutUser = () => {
     auth.signOut().then(() => {
       navigation.replace("Login");
     });
   };
+
+  // https://youtu.be/MJzmZ9qmdaE?t=7728
+  useEffect(() => {
+    const unsubscribe = db
+      .collection("chats")
+      .onSnapshot((snapshot) =>
+        setChats(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+      );
+
+    return unsubscribe;
+  }, []);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       //HEADER styling
@@ -76,7 +91,10 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView>
       {/* //ScrollView enables scrollable container */}
       <ScrollView>
-        <CustomListItem />
+        {chats.map(({ id, data: { chatName } }) => (
+          // "key" allows you to have efficient re-rendering of the list
+          <CustomListItem key={id} id={id} chatName={chatName} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
