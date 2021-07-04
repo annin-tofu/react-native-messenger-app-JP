@@ -35,7 +35,7 @@ const RegisterScreen = ({ navigation }) => {
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
         // https://youtu.be/MJzmZ9qmdaE?t=4483
-        authUser.user.update({
+        authUser.user.updateProfile({
           displayName: name,
           //   double straight lines || means OR
           photoURL:
