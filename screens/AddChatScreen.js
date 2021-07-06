@@ -17,11 +17,15 @@ const AddChatScreen = ({ navigation }) => {
 
   const createChat = async () => {
     await db
+      //go to firestore DB, and you will see "chats" stored in a "collection".
       .collection("chats")
+      //then we "add" to the "collection". and we add "chatName"
       .add({ chatName: input })
       .then(() => {
+        //navigate the user to "goBack" ( goes back to the precious screen)
         navigation.goBack();
       })
+      //error handling
       .catch((error) => alert(error));
   };
 
