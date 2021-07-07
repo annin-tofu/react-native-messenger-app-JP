@@ -23,6 +23,7 @@ import * as firebase from "firebase";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -87,14 +88,14 @@ const ChatScreen = ({ navigation, route }) => {
   }, [navigation]);
 
   const sendMessage = () => {
-    //dismiss keyboard. ==> when sending message, it hides the keyboard
+    //dismiss keyboard. ==> when SEND is clicked, it hides the keyboard
     Keyboard.dismiss();
 
-    // DB SIDE
+    // SEND MESSAGE
 
     //go inside chats. =>which chat, are we in? then pass in 'chats'. and then "doc". then pass in 'router.params.id'.
     // then iside of chat in collection of 'messages' and push /("add") objects
-    db.collection("chat").doc(router.params.id).collection("messages").add({
+    db.collection("chats").doc(route.params.id).collection("messages").add({
       //when SEND button is clicked, it goes to firebase. then firestore. then FieldValue. then serverTimestamp()
       // Reason why servertimestamp is used that the users might be from all over the world. they have diffent timestmp. But using an universal ServerTimeStamp prevents it.
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -123,26 +124,24 @@ const ChatScreen = ({ navigation, route }) => {
       >
         {/* //disable keyboard when tapped */}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <TouchableWithoutFeedback>
-            <>
-              <ScrollView>{/* Chat goes here */}</ScrollView>
-              <View style={styles.footer}>
-                <TextInput
-                  value={input}
-                  //styling is separetaly set later
-                  onChangeText={(text) => setInput(text)}
-                  pleceholder="Signal Message"
-                  onSubmitEditing={sendMessage}
-                  style={styles.textInput}
-                />
+          <>
+            <ScrollView>{/* Chat goes here */}</ScrollView>
+            <View style={styles.footer}>
+              <TextInput
+                value={input}
+                //styling is separetaly set later
+                onChangeText={(text) => setInput(text)}
+                pleceholder="Signal Message"
+                onSubmitEditing={sendMessage}
+                style={styles.textInput}
+              />
 
-                {/* SEND ICON (blue arrow facing rightward) */}
-                <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
-                  <Ionicons name="send" size={24} color="#2B68E6" />
-                </TouchableOpacity>
-              </View>
-            </>
-          </TouchableWithoutFeedback>
+              {/* SEND ICON (blue arrow facing rightward) */}
+              <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
+                <Ionicons name="send" size={24} color="#2B68E6" />
+              </TouchableOpacity>
+            </View>
+          </>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
