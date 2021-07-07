@@ -40,7 +40,7 @@ const RegisterScreen = ({ navigation }) => {
           //   double straight lines || means OR
           photoURL:
             imageUrl ||
-            "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+            "https://res.cloudinary.com/dhyagpwyl/image/upload/v1625637559/default-profile-pic.jpg_jytoen.webp",
         });
       })
       //below line is for when the authentication did not go successful. if there is any error, alert will pop up
