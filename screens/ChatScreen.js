@@ -38,7 +38,10 @@ const ChatScreen = ({ navigation, route }) => {
           <Avatar
             rounded
             source={{
-              uri: "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+              // first try to pull image from photoURL. "||" if not available, then pull the blank profile image from the URL
+              uri:
+                messages[0]?.data.photoURL ||
+                "https://res.cloudinary.com/dhyagpwyl/image/upload/v1625637559/default-profile-pic.jpg_jytoen.webp",
             }}
           />
 
