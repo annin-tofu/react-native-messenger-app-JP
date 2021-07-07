@@ -7,15 +7,19 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
   Platform,
   KeyboardAvoidingView,
   ScrollView,
   TextInput,
+  Keyboard,
 } from "react-native";
 import { Avatar } from "react-native-elements";
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { db, auth } from "../firebase";
+import * as firebase from "firebase";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
@@ -82,7 +86,28 @@ const ChatScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const sendMessage = () => {};
+  const sendMessage = () => {
+    //dismiss keyboard. ==> when sending message, it hides the keyboard
+    Keyboard.dismiss();
+
+    // DB SIDE
+
+    //go inside chats. =>which chat, are we in? then pass in 'chats'. and then "doc". then pass in 'router.params.id'.
+    // then iside of chat in collection of 'messages' and push /("add") objects
+    db.collection("chat").doc(router.params.id).collection("messages").add({
+      //when SEND button is clicked, it goes to firebase. then firestore. then FieldValue. then serverTimestamp()
+      // Reason why servertimestamp is used that the users might be from all over the world. they have diffent timestmp. But using an universal ServerTimeStamp prevents it.
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      message: input,
+      //How to get User's name   => go to "auth". then get the CurrentUser. then displayName that we first set up
+      displayName: auth.currentUser.displayName,
+      email: auth.currentUser.email,
+      //profile picture
+      photoURL: auth.currentUser.photoURL,
+    });
+
+    setInput("");
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -96,23 +121,29 @@ const ChatScreen = ({ navigation, route }) => {
         // This will allow you to offset the screen
         keyboardVerticalOffset={90}
       >
-        <>
-          <ScrollView>{/* Chat goes here */}</ScrollView>
-          <View style={styles.footer}>
-            <TextInput
-              value={input}
-              //styling is separetaly set later
-              onChangeText={(text) => setInput(text)}
-              pleceholder="Signal Message"
-              style={styles.textInput}
-            />
+        {/* //disable keyboard when tapped */}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <TouchableWithoutFeedback>
+            <>
+              <ScrollView>{/* Chat goes here */}</ScrollView>
+              <View style={styles.footer}>
+                <TextInput
+                  value={input}
+                  //styling is separetaly set later
+                  onChangeText={(text) => setInput(text)}
+                  pleceholder="Signal Message"
+                  onSubmitEditing={sendMessage}
+                  style={styles.textInput}
+                />
 
-            {/* SEND ICON (blue arrow facing rightward) */}
-            <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
-              <Ionicons name="send" size={24} color="#2B68E6" />
-            </TouchableOpacity>
-          </View>
-        </>
+                {/* SEND ICON (blue arrow facing rightward) */}
+                <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
+                  <Ionicons name="send" size={24} color="#2B68E6" />
+                </TouchableOpacity>
+              </View>
+            </>
+          </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -138,9 +169,9 @@ const styles = StyleSheet.create({
     height: 40,
     flex: 1,
     marginRight: 15,
-    borderColor: "transparent",
+    // borderColor: "transparent",
     backgroundColor: "#ECECEC",
-    borderWidth: 1,
+    // borderWidth: 1,
     padding: 10,
     color: "grey",
     borderRadius: 30,
