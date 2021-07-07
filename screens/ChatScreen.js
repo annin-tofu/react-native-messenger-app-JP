@@ -85,7 +85,7 @@ const ChatScreen = ({ navigation, route }) => {
         </View>
       ),
     });
-  }, [navigation]);
+  }, [navigation, messages]);
 
   const sendMessage = () => {
     //dismiss keyboard. ==> when SEND is clicked, it hides the keyboard
@@ -110,6 +110,29 @@ const ChatScreen = ({ navigation, route }) => {
     setInput("");
   };
 
+  useLayoutEffect(() => {
+    const unsubscribe = db
+      .collection("chats")
+      .doc(route.params.id)
+      //go into the collection of messages.
+      .collection("messages")
+      //timestamp, order by timestamp/decsending =>most recent message come to the top
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setMessages(
+          //IMPLICIT RETURN.
+          // for every single 'documents', return with objects
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+
+    return unsubscribe;
+    //dependend on the 'route'
+  }, [route]);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar style="light" />
@@ -122,14 +145,64 @@ const ChatScreen = ({ navigation, route }) => {
         // This will allow you to offset the screen
         keyboardVerticalOffset={90}
       >
-        {/* //disable keyboard when tapped */}
+        {/* //disable keyboard when tapped in blank area*/}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
-            <ScrollView>{/* Chat goes here */}</ScrollView>
+            <ScrollView contentContainerStyle={{ paddingTop: 15 }}>
+              {/* https://youtu.be/MJzmZ9qmdaE?t=10422 */}
+              {/* //map thru messages.
+              for every single messages, destructure the "message", and get 'id' and 'data' */}
+              {messages.map(({ id, data }) =>
+                // if the data is === (equivalent) to authenticated user. then YOU will be the sender.
+                data.email === auth.currentUser.email ? (
+                  // RECEIVER MESSAGES
+                  <View key={id} style={styles.receiver}>
+                    <Avatar
+                      position="absolute"
+                      rounded
+                      //for WEB
+                      containerStyle={{
+                        position: "absolute",
+                        bottom: -15,
+                        right: -5,
+                      }}
+                      bottom={-15}
+                      right={-5}
+                      size={30}
+                      source={{
+                        uri: data.photoURL,
+                      }}
+                    />
+                    <Text style={styles.receiverText}>{data.message}</Text>
+                  </View>
+                ) : (
+                  // SENDER MESSAGES
+                  <View style={styles.sender}>
+                    <Avatar
+                      position="absolute"
+                      containerStyle={{
+                        position: "absolute",
+                        bottom: -15,
+                        left: -5,
+                      }}
+                      bottom={-15}
+                      left={-5}
+                      rounded
+                      size={30}
+                      source={{
+                        uri: data.photoURL,
+                      }}
+                    />
+                    <Text style={styles.senderText}>{data.message}</Text>
+                    <Text style={styles.senderName}>{data.displayName}</Text>
+                  </View>
+                )
+              )}
+            </ScrollView>
             <View style={styles.footer}>
               <TextInput
                 value={input}
-                //styling is separetaly set later
+                // styling is separetaly set later
                 onChangeText={(text) => setInput(text)}
                 pleceholder="Signal Message"
                 onSubmitEditing={sendMessage}
@@ -153,6 +226,49 @@ export default ChatScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  receiver: {
+    padding: 15,
+    backgroundColor: "#ECECEC",
+    // flex-end: to the right
+    alignSelf: "flex-end",
+    borderRadius: 20,
+    marginRight: 15,
+    marginBottom: 20,
+    maxWidth: "80%",
+    position: "relative",
+  },
+
+  recieverText: {
+    color: "black",
+    fontWeight: "500",
+    marginLeft: 10,
+  },
+
+  sender: {
+    padding: 15,
+    backgroundColor: "#2B68E6",
+    // flex-start: to the left
+    alignSelf: "flex-start",
+    borderRadius: 20,
+    margin: 15,
+    maxWidth: "80%",
+    position: "relative",
+  },
+
+  senderText: {
+    color: "white",
+    fontWeight: "500",
+    marginLeft: 10,
+    marginBottom: 15,
+  },
+
+  senderName: {
+    left: 10,
+    paddingRight: 10,
+    fontSize: 10,
+    color: "white",
   },
 
   footer: {
