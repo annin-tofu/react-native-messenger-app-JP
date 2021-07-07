@@ -16,6 +16,7 @@ import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 //for Logout
 const HomeScreen = ({ navigation }) => {
   // https://youtu.be/MJzmZ9qmdaE?t=7728
+  // this will go ahead and have all the State, by default, an empty array "[]"
   const [chats, setChats] = useState([]);
 
   const signOutUser = () => {
@@ -26,9 +27,12 @@ const HomeScreen = ({ navigation }) => {
 
   // https://youtu.be/MJzmZ9qmdaE?t=7728
   useEffect(() => {
+    //clean up functions afterwards. and connect to out db of collection of "chats"
     const unsubscribe = db
       .collection("chats")
+      //this will give live snapshot of the database.
       .onSnapshot((snapshot) =>
+        //set out local state of empty array of snapshot.  for the every single  doc, go ahead and return objects.
         setChats(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
       );
 
@@ -96,6 +100,9 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView>
       {/* //ScrollView enables scrollable container */}
       <ScrollView style={styles.container}>
+        {/* {chats.map(({chat}) => ( */}
+        {/* "chat" needs to be deconstructed as   "id, data" 
+      Also deconstructre "data" as "chatName"*/}
         {chats.map(({ id, data: { chatName } }) => (
           // "key" allows you to have efficient re-rendering of the list
           <CustomListItem
@@ -115,7 +122,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // when you put 100%, put it in a string ""
+    // when you put 100%, you must put it in a string ""
     height: "100%",
   },
 });

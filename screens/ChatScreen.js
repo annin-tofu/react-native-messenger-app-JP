@@ -36,9 +36,11 @@ const ChatScreen = ({ navigation, route }) => {
               uri: "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
             }}
           />
-          {/* {route.params.chatName} is the name of the chat => and set it as a
-          title in ChatScreen page */}
+
+          {/* <CHAT NAME */}
           <Text style={{ color: "white", marginLeft: 10, fontWeight: "700" }}>
+            {/* {route.params.chatName} is the name of the chat => and set it as a
+          title in ChatScreen page */}
             {route.params.chatName}
           </Text>
         </View>
@@ -99,6 +101,7 @@ const ChatScreen = ({ navigation, route }) => {
           <View style={styles.footer}>
             <TextInput
               value={input}
+              //styling is separetaly set later
               onChangeText={(text) => setInput(text)}
               pleceholder="Signal Message"
               style={styles.textInput}
@@ -118,12 +121,28 @@ const ChatScreen = ({ navigation, route }) => {
 export default ChatScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+  },
+
   footer: {
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
     padding: 15,
   },
-  textInput: {},
+
+  // TEXT INPUT in the bottom styling
+  textInput: {
+    bottom: 0,
+    height: 40,
+    flex: 1,
+    marginRight: 15,
+    borderColor: "transparent",
+    backgroundColor: "#ECECEC",
+    borderWidth: 1,
+    padding: 10,
+    color: "grey",
+    borderRadius: 30,
+  },
 });
