@@ -70,12 +70,6 @@ const HomeScreen = ({ navigation }) => {
             marginRight: 20,
           }}
         >
-          {/* CAMERA ICON */}
-          <TouchableOpacity activeOpacity={0.5}>
-            {/* //name="camerao"  => camera outline */}
-            <AntDesign name="camerao" size={24} color="black" />
-          </TouchableOpacity>
-
           {/* PENCIL ICON */}
           <TouchableOpacity
             onPress={() => navigation.navigate("AddChat")}
