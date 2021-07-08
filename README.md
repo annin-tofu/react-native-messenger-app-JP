@@ -154,3 +154,4 @@ https://res.cloudinary.com/dhyagpwyl/image/upload/v1625110274/Yuya_Profile_Pic_p
 # when React-Native is freaking out / or freezes
 
 go to terminal and press "i" to reopoen iOS simulator.
+# React-Native-Messenger-App
