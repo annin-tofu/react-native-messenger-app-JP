@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
           uri: "https://res.cloudinary.com/dhyagpwyl/image/upload/v1625020855/524846c6fd9fe5cf4f42fb8812d6019d_tycq2c.png",
         }}
         //inline-styling
-        style={{ width: 200, height: 200 }}
+        style={{ width: 200, height: 200, marginBottom: 100 }}
       />
       {/* INPUT COLUMN for Email for sign-up */}
       <View style={styles.inputContainer}>

@@ -60,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
       ),
 
-      // for Camera logo and pencil logo on header right
+      // for pencil logo on header right
       headerRight: () => (
         <View
           style={{
