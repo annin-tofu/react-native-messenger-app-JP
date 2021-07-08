@@ -65,28 +65,6 @@ const ChatScreen = ({ navigation, route }) => {
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
       ),
-
-      // // // VIDEO CAMERA ICON AND PHONE ICON on header right
-      // // headerRight: () => (
-      // //   <View
-      // //     style={{
-      // //       flexDirection: "row",
-      // //       justifyContent: "space-between",
-      // //       width: 80,
-      // //       // marginRight set to 20 so that it is not touching to the right end
-      // //       marginRight: 20,
-      // //     }}
-      // //   >
-      // //     {/* VIDEO CAMERA ICON
-      // //     <TouchableOpacity>
-      // //       <FontAwesome name="video-camera" size={24} color="white" />
-      // //     </TouchableOpacity> */}
-      // //     {/* PHONE ICON
-      // //     <TouchableOpacity>
-      // //       <Ionicons name="call" size={24} color="white" />
-      // //     </TouchableOpacity> */}
-      // //   </View>
-      // // ),
     });
   }, [navigation, messages]);
 

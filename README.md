@@ -1,4 +1,15 @@
-# signal-clone
+# React-Native Messenger App
+
+# install yarn
+
+if you get this error, "Unable to find expo in this project - have you run yarn / npm install yet?"
+run $ yarn install
+
+# install react-native
+
+https://reactnative.dev/docs/environment-setup
+
+$ (sudo) yarn global add expo-cli
 
 # To start
 
@@ -154,6 +165,17 @@ https://res.cloudinary.com/dhyagpwyl/image/upload/v1625110274/Yuya_Profile_Pic_p
 # when React-Native is freaking out / or freezes
 
 go to terminal and press "i" to reopoen iOS simulator.
-# React-Native-Messenger-App
-# React-Native-Messenger-App
-# React-Native-Messenger-App
+
+# Deployment on firebase
+
+$ firebase login
+$ firebase init
+choose Hosting
+
+then run $ expo build:web
+(this will create 'web-build' folder.
+everytime there is a new change of code. run $ expo build :web
+this is like running $ yarn build )
+
+then run $ firebase deploy
+to deploy on actual web
