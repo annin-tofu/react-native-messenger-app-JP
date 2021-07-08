@@ -65,7 +65,7 @@ const HomeScreen = ({ navigation }) => {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             width: 80,
             marginRight: 20,
           }}
