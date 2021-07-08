@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
       <Image
         // use "source", "src" will not work.
         source={{
-          uri: "https://blog.mozilla.org/internetcitizen/files/2018/08/signal-logo.png",
+          uri: "https://res.cloudinary.com/dhyagpwyl/image/upload/v1625020855/524846c6fd9fe5cf4f42fb8812d6019d_tycq2c.png",
         }}
         //inline-styling
         style={{ width: 200, height: 200 }}

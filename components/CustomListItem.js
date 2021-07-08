@@ -1,7 +1,7 @@
 // use ES7 snippets
 // rnfes (ReactNativeFunctionalExportStylesheet)
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { db } from "../firebase";
 

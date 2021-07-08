@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -38,11 +37,10 @@ const HomeScreen = ({ navigation }) => {
 
     return unsubscribe;
   }, []);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       //HEADER styling
-      title: "Signal",
+      title: "Messenger-App",
       headerStyle: { backgroundColor: "#fff" },
       //header title color
       headerTitleStyle: { color: "black" },
