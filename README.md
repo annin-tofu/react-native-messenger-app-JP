@@ -174,9 +174,10 @@ choose Hosting
 
 then run $ expo build:web
 (this will create 'web-build' folder.
-everytime there is a new change of code. run $ expo build :web
+everytime there is a new change of code. run $ expo build:web
 this is like running $ yarn build )
 
 then run $ firebase deploy
 to deploy on actual web
+
 # react-native-messenger-app-JP

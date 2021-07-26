@@ -8,12 +8,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC8WjzZJVXlh-M4j2EA6vm3FLqPQq80xDE",
-  authDomain: "messenger-app-react-native.firebaseapp.com",
-  projectId: "messenger-app-react-native",
-  storageBucket: "messenger-app-react-native.appspot.com",
-  messagingSenderId: "597249028217",
-  appId: "1:597249028217:web:9703b4670cf6835387a4a8",
+  apiKey: "AIzaSyAaLhborj5CvsTmMPi8M0p407-_GFxhs-0",
+  authDomain: "react-native-messenger-app-jp.firebaseapp.com",
+  projectId: "react-native-messenger-app-jp",
+  storageBucket: "react-native-messenger-app-jp.appspot.com",
+  messagingSenderId: "746692006279",
+  appId: "1:746692006279:web:998d61ff0e818d66418322",
 };
 
 // "let", unlike const or function, allows changing the variables
