@@ -182,4 +182,5 @@ to deploy on actual web
 
 # react-native-messenger-app-JP
 
+(no auto deploy enabled.)
 deployed at https://react-native-messenger-app-jp.firebaseapp.com
