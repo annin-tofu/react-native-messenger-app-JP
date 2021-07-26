@@ -32,7 +32,7 @@ const AddChatScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Input
-        placeholder="Enter a chat name"
+        placeholder="新しく作成するチャットの名前を入力"
         value={input}
         onChangeText={(text) => setInput(text)}
         onSubmitEditing={createChat}
@@ -45,7 +45,7 @@ const AddChatScreen = ({ navigation }) => {
         // button disabled if there is no input
         disbled={!input}
         onPress={createChat}
-        title="Create new chat"
+        title="チャットを作成する"
       />
     </View>
   );

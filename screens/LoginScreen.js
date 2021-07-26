@@ -60,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.inputContainer}>
         {/* placeholder is grey words to show "Email" to show it is the place for "Email" */}
         <Input
-          placeholder="Email"
+          placeholder="Eメールを入力"
           //  {/* Also, autoFocus type gives effect that it auto focuses to input box when logged in. */}
           autoFocus
           type="email"
@@ -72,7 +72,7 @@ const LoginScreen = ({ navigation }) => {
         />
 
         <Input
-          placeholder="Password"
+          placeholder="パスワードを入力"
           //  {/* secureTextEntry will hide typed passwords with black dots for security */}
           secureTextEntry
           type="password"
@@ -87,7 +87,11 @@ const LoginScreen = ({ navigation }) => {
 
       {/* 
 // use onPress in React-Native, instead of onClick as in React. This is becuase of idea of stack in react-native app*/}
-      <Button containerStyle={styles.button} onPress={signIn} title="Login" />
+      <Button
+        containerStyle={styles.button}
+        onPress={signIn}
+        title="ログイン"
+      />
 
       {/* type="outline"  makes the box outlined. i.e. here it  makes the Register box with blue text, and white background, and blue outline */}
       {/*  onPress={() => navigation.navigate("Register")   >>>this is how we change screens on React-Native */}
@@ -95,7 +99,7 @@ const LoginScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("Register")}
         containerStyle={styles.button}
         type="outline"
-        title="Register"
+        title="新規登録"
       />
 
       {/* next line is added to have more space between keyboard and register button, when keyboard is enabled. */}
