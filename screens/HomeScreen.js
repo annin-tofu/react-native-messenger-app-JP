@@ -55,7 +55,14 @@ const HomeScreen = ({ navigation }) => {
           "?" IF EMPTY/UNDEFINED then,
           get photoURL         
           */}
-            <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
+            <Avatar
+              rounded
+              source={{
+                uri:
+                  auth.currentUser.photoURL ||
+                  "https://res.cloudinary.com/dhyagpwyl/image/upload/v1625637559/default-profile-pic.jpg_jytoen.webp",
+              }}
+            />
           </TouchableOpacity>
         </View>
       ),

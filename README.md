@@ -181,3 +181,5 @@ then run $ firebase deploy
 to deploy on actual web
 
 # react-native-messenger-app-JP
+
+deployed at https://react-native-messenger-app-jp.firebaseapp.com
